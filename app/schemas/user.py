@@ -3,7 +3,7 @@ from typing import Optional
 
 class UserCreate(BaseModel):
     email: EmailStr
-    password: str  # se usará para enviar al auth-service
+    password: str  
     full_name: str
     phone: Optional[str]
     address: Optional[str]
@@ -16,8 +16,8 @@ class UserResponse(BaseModel):
     address: Optional[str]
 
     class Config:
-        orm_mode = True
-
+        orm_mode = True  
+        
 class UserUpdate(BaseModel):
     full_name: Optional[str]
     phone: Optional[str]

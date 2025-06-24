@@ -1,7 +1,6 @@
 from ariadne import MutationType
-from app.schemas.user import UserCreate
+from app.schemas.user import UserCreate, UserResponse
 from app.services.user_service import register_user
-from app.schemas.user import UserResponse
 
 mutation = MutationType()
 
@@ -13,3 +12,4 @@ async def resolve_create_user(_, info, input):
         return dict(UserResponse.from_orm(user))
     except Exception as e:
         return {"error": str(e)}
+
