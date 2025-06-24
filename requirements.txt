@@ -4,6 +4,7 @@ sqlalchemy
 asyncpg
 databases
 ariadne
-pydantic
+pydantic[email]==1.10.15
 python-dotenv
 httpx
+psycopg2-binary

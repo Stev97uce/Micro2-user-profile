@@ -6,9 +6,14 @@ from app.api.graphql.queries.get_user_by_id import query as get_user_query
 query = QueryType()
 mutation = MutationType()
 
-# Enlazar resolvers manualmente a mutation
-mutation.set_field("createUser", create_user_mutation._resolver_map["createUser"])
-mutation.set_field("updateProfile", update_profile_mutation._resolver_map["updateProfile"])
+for field, resolver in create_user_mutation._resolvers.items():
+    mutation.set_field(field, resolver)
+
+for field, resolver in update_profile_mutation._resolvers.items():
+    mutation.set_field(field, resolver)
+
+for field, resolver in get_user_query._resolvers.items():
+    query.set_field(field, resolver)
 
 type_defs = """
     type User {
@@ -31,7 +36,7 @@ type_defs = """
         full_name: String
         phone: String
         address: String
-    }   
+    }
 
     type Mutation {
         createUser(input: UserInput!): User
@@ -43,5 +48,4 @@ type_defs = """
     }
 """
 
-query.set_field("getUserById", get_user_query._resolver_map["getUserById"])
 schema = make_executable_schema(type_defs, [query, mutation])
