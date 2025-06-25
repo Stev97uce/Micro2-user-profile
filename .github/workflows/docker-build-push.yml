@@ -3,7 +3,7 @@ name: Build and Push Docker Image for QA
 on:
   push:
     branches:
-      - QA
+      - QA 
 
 jobs:
   build-and-push:
@@ -30,4 +30,4 @@ jobs:
         push: true
         tags: stevxd97/micro2-user-profile:qa
         cache-from: type=registry,ref=stevxd97/micro2-user-profile:qa
-        cache-to: type=inlinest
+        cache-to: type=inline
