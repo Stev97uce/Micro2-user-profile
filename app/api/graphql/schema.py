@@ -3,11 +3,9 @@ from app.api.graphql.mutations.create_user import mutation as create_user_mutati
 from app.api.graphql.mutations.update_profile import mutation as update_profile_mutation
 from app.api.graphql.queries.get_user_by_id import query as get_user_query
 
-# Creamos resolvers globales
 query = QueryType()
 mutation = MutationType()
 
-# Asignamos resolvers manualmente desde los módulos
 for field, resolver in create_user_mutation._resolvers.items():
     mutation.set_field(field, resolver)
 
@@ -17,7 +15,6 @@ for field, resolver in update_profile_mutation._resolvers.items():
 for field, resolver in get_user_query._resolvers.items():
     query.set_field(field, resolver)
 
-# Definición del esquema GraphQL
 type_defs = """
     type User {
         id: Int!

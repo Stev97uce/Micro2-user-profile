@@ -2,7 +2,7 @@ import httpx
 from app.core.config import settings
 
 async def create_credentials(email: str, password: str):
-    url = f"{settings.AUTH_SERVICE_URL}/credentials"
+    url = f"{settings.http://34.225.179.191:8000}/credentials"
     payload = {"email": email, "password": password}
 
     async with httpx.AsyncClient() as client:

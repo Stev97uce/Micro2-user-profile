@@ -5,7 +5,7 @@ from app.core.database import database
 from sqlalchemy import insert
 
 async def check_user_exists(email: str):
-    url = f"http://<AUTH_SERVICE_PUBLIC_IP>:8000/check_user_exists"
+    url = f"http://34.225.179.191:8000/check_user_exists"
     payload = {"email": email}
 
     async with httpx.AsyncClient() as client:
@@ -17,7 +17,7 @@ async def check_user_exists(email: str):
         raise Exception(f"Error al verificar el usuario en auth-service: {response.status_code} - {response.text}")
 
 async def create_credentials(email: str, password: str):
-    url = "http://<AUTH_SERVICE_PUBLIC_IP>:8000/credentials"
+    url = "http://34.225.179.191:8000/credentials"
     payload = {"email": email, "password": password}
 
     async with httpx.AsyncClient() as client:
@@ -52,7 +52,7 @@ async def register_user(user_data: UserCreate):
         raise e
 
 async def delete_user_in_auth_service(email: str):
-    url = f"http://<AUTH_SERVICE_PUBLIC_IP>:8000/delete_user"
+    url = f"http://34.225.179.191:8000/delete_user"
     payload = {"email": email}
 
     async with httpx.AsyncClient() as client:
